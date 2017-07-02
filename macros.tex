@@ -1,0 +1,382 @@
+
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\Figref}[1]{Fig.~\ref{#1}}
+
+\newcommand{\tautada}{Total-TaDA\xspace}
+
+% Set
+\newcommand{\Set}[1]{\left\{#1\right\}}
+% Set builder
+\newcommand{\Setb}[2]{\left\{#1 \ \middle| \ #2 \right\}}
+
+\newcommand{\powset}[1]{\mathcal{P}( {#1} )}
+\newcommand{\finpowset}[1]{\mathcal{P}_\mathit{fin}( {#1} )}
+\newcommand{\ucpowset}[1]{\mathcal{P}^{\uparrow}( {#1} )}
+\newcommand{\finmulset}[1]{\mathcal{M}_\mathit{fin}( {#1} )}
+
+\newcommand{\eqdef}{\stackrel{\mathrm{def}}{=}}
+\newcommand{\iffdef}{\stackrel{\mathrm{def}}{\iff}}
+
+\newcommand{\pfun}{\rightharpoonup}
+\newcommand{\fpfun}{\pfun_\mathit{fin}}
+\newcommand{\tomon}{\to_\mathit{mon}}
+
+\newcommand{\dom}{\mathop{\mathrm{dom}}}
+
+\newcommand{\bigoast}{\mathop{\mbox{\Large $\varoast$}}}
+
+\newcommand{\lcat}{\mathbin{\mathord{+}\!\mathord{+}}}
+
+% Stability judgement
+\newcommand{\stable}[2][]{{#1} \vDash {#2} \ \mathsf{stable}}
+
+% A thread is a pair of variable store and command
+\newcommand{\threadp}[2]{\langle {#1}, {#2} \rangle}
+
+% Variable ranging over threads
+\newcommand{\thread}{\tau}
+
+% Command
+\newcommand{\cmd}{\mathbb{C}}
+% Boolean expression
+\newcommand{\bexp}{\mathbb{B}}
+% Expression
+\newcommand{\vexp}{\mathbb{E}}
+
+% Variable store
+\newcommand{\sto}{s}
+
+% Denotational semantics
+\newcommand{\sem}[1]{\llbracket {#1} \rrbracket}
+% Semantics of boolean expressions
+\newcommand{\bsem}[2]{\mathcal{B} \sem{#1}_{#2}}
+% Semantics of value expressions
+\newcommand{\esem}[2]{\mathcal{E} \sem{#1}_{#2}}
+
+% Transition label (operational)
+\newcommand{\lab}{a}
+
+% Identity transition label
+\newcommand{\id}{\mathsf{id}}
+
+\newcommand{\Level}{\mathsf{Level}}
+
+% read transition label
+\newcommand{\lread}{\mathsf{read}}
+\newcommand{\lwrite}{\mathsf{write}}
+\newcommand{\lcas}{\mathsf{cas}}
+\newcommand{\lalloc}{\mathsf{alloc}}
+\newcommand{\lspawn}{\mathsf{spawn}}
+
+% Labelled transition relation
+\newcommand{\red}[1][\id]{\xrightarrow{#1}}%{\stackrel{#1}{\to}}
+
+% Programming language
+
+\newcommand{\pvar}[1]{\mathtt{#1}}
+\newcommand{\pfunction}[3]{\mathtt{function} \ #1(#2) \ \{ \ #3 \}}
+\newcommand{\psequence}[2]{#1 ;\ #2}
+\newcommand{\pifelse}[3]{\mathtt{if} \ (#1) \ #2 \ \mathtt{else} \ #3}
+\newcommand{\pwhile}[2]{\mathtt{while} \ (#1) \ #2}
+\newcommand{\pdowhile}[2]{\mathtt{do} \ #1 \ \mathtt{while} \ (#2)}
+\newcommand{\plassign}[2]{#1 \mathtt{\ :=\ } #2}
+\newcommand{\passign}[2]{[#1] \mathtt{\ :=\ } #2}
+\newcommand{\pderef}[2]{#1 \mathtt{\ :=\ } [#2]}
+\newcommand{\pfuncall}[3]{#1 \mathtt{\ :=\ } #2(#3)}
+\newcommand{\preturn}[1]{\mathtt{return} \ #1}
+\newcommand{\pskip}[0]{\mathtt{skip}}
+\newcommand{\pfork}[2]{\mathtt{fork} \ #1(#2)} 
+\newcommand{\pcas}[4]{#1 \mathtt{\ :=\ } \mathtt{CAS}(#2,#3,#4)}
+\newcommand{\palloc}[2]{#1 \mathtt{\ :=\ } \mathtt{alloc}(#2)}
+
+% Alternative programming languages to use in programs
+
+\newcommand{\pfunctions}[2]{\mathtt{function} \ \mathtt{#1}(#2) \ \{}
+\newcommand{\pfunctione}{\}}
+\newcommand{\pifelses}[1]{\mathtt{if} \ (#1) \ \{}
+\newcommand{\pifelsem}{\} \ \mathtt{else} \ \{}
+\newcommand{\pifelsee}{\}}
+\newcommand{\pwhiles}[1]{\mathtt{while} \ (#1) \ \{}
+\newcommand{\pwhilee}{\}}
+\newcommand{\pdowhiles}{\mathtt{do} \ \{}
+\newcommand{\pdowhilee}[1]{\} \ \mathtt{while} \ (#1);}
+
+\newcommand{\procenv}{\gamma}
+\newcommand{\proccode}[1]{\mathit{code}(#1)}
+\newcommand{\procvars}[1]{\mathit{vars}(#1)}
+
+\newcommand{\procname}{f}
+
+\newcommand{\threadpool}{T}
+\newcommand{\tppar}{\mathrel{\|}}
+
+\newcommand{\wop}{\mathbin{\cdot}}
+\newcommand{\wemp}{\mathsf{emp}}
+
+% Types
+
+\newcommand{\Heap}{\mathsf{Heap}}
+\newcommand{\World}{\mathsf{World}}
+\newcommand{\RId}{\mathsf{RId}}
+\newcommand{\Guard}{\mathsf{Guard}}
+\newcommand{\GuardAlgebra}{\mathsf{GAlg}}
+\newcommand{\AState}{\mathsf{AState}}
+\newcommand{\ASTS}{\mathsf{ASTS}}
+\newcommand{\ARType}{\mathsf{ARType}} % Abstract Region Type
+\newcommand{\RTName}{\mathsf{RTName}} %Region type name
+\newcommand{\Val}{\mathsf{Val}}
+\newcommand{\Loc}{\mathsf{Loc}}
+\newcommand{\APName}{\mathsf{APName}}
+\newcommand{\APBag}{\mathsf{APBag}}
+\newcommand{\RAss}{\mathsf{RAss}}
+\newcommand{\GAss}{\mathsf{GAss}}
+\newcommand{\RState}{\mathsf{RState}}
+\newcommand{\WPred}{\mathsf{WPred}}
+\newcommand{\AWorld}{\mathsf{AWorld}}
+\newcommand{\AWPred}{\mathsf{AWPred}}
+\newcommand{\AContext}{\mathsf{AContext}}
+\newcommand{\View}{\mathsf{View}}
+\newcommand{\RInterp}{\mathsf{RInterp}}
+\newcommand{\APInterp}{\mathsf{APInterp}}
+\newcommand{\AAction}{\mathsf{AAction}}
+\newcommand{\FAction}{\mathsf{FAction}}
+
+\newcommand{\Command}{\mathsf{Command}}
+\newcommand{\Store}{\mathsf{Store}}
+
+% variables
+\newcommand{\ga}{\zeta} % guard algebra
+\newcommand{\gcarr}{\mathcal{G}} % carrier set
+\newcommand{\gzero}{\mathbf{0}} % identity
+\newcommand{\gone}{\mathbf{1}} % maximal element
+\newcommand{\gop}{\mathbin{\bullet}} % operator
+\newcommand{\disjoint}{\mathrel{\#}}
+
+\newcommand{\glts}{\mathcal{T}}
+
+\newcommand{\art}{t} % Abstraction region type
+\newcommand{\hp}{h} % Heap
+
+\newcommand{\ap}{\mathsf{a}} % Abstract predicate?
+\newcommand{\apb}{b} % Abstract predicate bag
+
+\newcommand{\rass}{r}
+\newcommand{\rset}{\mathcal{R}}
+\newcommand{\aset}{\mathcal{A}}
+\newcommand{\world}{w}
+\newcommand{\rid}{a}
+\newcommand{\gass}{\gamma}
+\newcommand{\rstate}{\rho}
+\newcommand{\aworld}{\varphi}
+\newcommand{\acontext}{\mathcal{A}}
+\newcommand{\donemap}{d}
+
+\newcommand{\rrel}{\mathrel{\mathrm{R}}}
+\newcommand{\grel}[1]{\mathrel{\mathrm{G}_{#1}}}
+
+\newcommand{\rint}{I}
+\newcommand{\apint}{\iota}
+
+\newcommand{\levl}{\lambda}
+
+% Projection functions
+\newcommand{\regionpart}[1]{\rstate_{#1}}
+\newcommand{\donepart}[1]{\donemap_{#1}}
+
+% Atomic satisfaction judgement
+\newcommand{\asat}[8]{#1 ; #2 \vDash \langle #4 \mid #5 \rangle  \ {#3} \  \langle #6 \mid - \rangle + \langle #8 \mid #7 \rangle }
+\newcommand{\asatb}[5]{#1 ; #2 \vDash \left\langle #3 \middle\rangle \mathrel{{#4}} \middle\langle #5 \right\rangle}
+\newcommand{\asatbv}[5]{#1 ; #2 \vDash \begin{array}{@{}c@{}}\left\langle #3 \right\rangle \\ \mathrel{{#4}} \\ \left\langle #5 \right\rangle \end{array}}
+
+\newcommand{\tauasat}[8]{#1 ; #2 \vDash_\tau \langle #4 \mid #5 \rangle  \ {#3} \  \langle #6 \mid - \rangle + \langle #8 \mid #7 \rangle }
+\newcommand{\tauasatb}[5]{#1 ; #2 \vDash_\tau \left\langle #3 \middle\rangle \mathrel{{#4}} \middle\langle #5 \right\rangle}
+\newcommand{\tauasatbv}[5]{#1 ; #2 \vDash_\tau \begin{array}{@{}c@{}}\left\langle #3 \right\rangle \\ \mathrel{{#4}} \\ \left\langle #5 \right\rangle \end{array}}
+
+\newcommand{\removedone}[2]{\mathrm{removedone}_{#1} \left({#2}\right)}
+
+\newcommand{\region}[3]{\mathbf{#1}_{#2}(#3)}
+\newcommand{\regionl}[4]{\mathbf{#1}_{#2}^{#4}(#3)}
+
+\newcommand{\done}[2]{{#1} \Mapsto {#2}}
+
+\newcommand{\rcol}[2]{{#1} \mathord{\downarrow_{#2}}}
+
+\newcommand{\apcol}[2]{{#1} \mathord{\downharpoonright_{#2}}}
+\newcommand{\apfcol}[1]{{#1} \mathord{\downharpoonright}}
+
+\newcommand{\reify}[2]{ \lfloor {#1} \rfloor_{#2}} 
+
+% atomic triple quantifier
+
+\newcommand{\aall}{\rotatebox[origin=c]{180}{$\mathds{A}$}}
+
+% existential...
+
+\newcommand{\aexists}{\rotatebox[origin=c]{180}{$\mathds{E}$}}
+
+% Atomicity Context Element
+
+\newcommand{\aaction}[3]{{#1} : {\begin{array}{@{}c@{}}#2\end{array}} \rightsquigarrow {\begin{array}{@{}c@{}}#3\end{array}}}
+\newcommand{\vaaction}[3]{\begin{array}{@{}l@{}}{#1} : {\begin{array}{@{}c@{}}#2\end{array}} \\ \qquad \rightsquigarrow {\begin{array}{@{}c@{}}#3\end{array}}\end{array}}
+
+% triples
+
+\newcommand{\apost}[2]{{\left\lgroup #1 \, \middle| \, #2 \right\rgroup}}
+
+% Basic Hoare triple
+% {#1} #2 {#3}
+\newcommand{\triple}[3]{{\color{blue} \left\{ \begin{array}{@{}c@{}} #1 \end{array} \middle\} \ {\color{black}{#2}} \ \middle\{ \begin{array}{@{}c@{}}#3 \end{array} \right\}}}
+
+% Vertical basic Hoare triple
+% {#1}
+%  #2
+% {#3}
+\newcommand{\vtriple}[3]{\begin{array}{@{}c@{}} {\color{blue}\left\{ {#1} \right\}} \\ {#2} \\ {\color{blue}\left\{ {#3} \right\}} \end{array}}
+
+% Atomic Hoare triple
+% #1 |- (AA) #2 . < #3 | #4 > #5 < #6 | #7 >
+\newcommand{\atriple}[7]{ {\color{violet}#1} \vdash {\color{RoyalBlue} \aall #2 \ldotp} {\color{blue} \left\langle \begin{array}{@{}c@{}} #3 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #4 \end{array} \middle\rangle \ {\color{black}#5} \ \middle\langle \begin{array}{@{}c@{}} #6 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #7 \end{array} \right\rangle}}
+
+% Atomic Hoare triple with exists
+% #1 |- (AA) #2 . < #3 | #4 > #5 (EE) #6. < #7 | #8 >
+\newcommand{\atriplee}[8]{ {\color{violet}#1} \vdash {\color{RoyalBlue} \aall #2 \ldotp} {\color{blue} \left\langle \begin{array}{@{}c@{}} #3 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #4 \end{array} \middle\rangle \ {\color{black}#5} \quad {\color{RoyalBlue}\aexists #6 \ldotp} \middle\langle \begin{array}{@{}c@{}} #7 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #8 \end{array} \right\rangle}}
+
+% Non-atomic Hoare triple
+% #1 |- {#2} #3 {#4}
+\newcommand{\triplena}[4]{{\color{violet}#1} \vdash \triple{#2}{#3}{#4}}
+
+% Atomic triple with alternative layout
+% #1 |- (AA) #2 .
+%   < #3 | #4 > #5 (EE) #6 . < #7 | #8 >
+\newcommand{\atripleeaux}[8]{\begin{array}{@{}l@{}}{\color{violet}#1} \vdash {\color{RoyalBlue} \aall #2 \ldotp} \\ \quad {\color{blue} \left\langle \begin{array}{@{}c@{}} #3 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #4 \end{array} \middle\rangle \ {\color{black}#5} \quad {\color{violet}\aexists #6 \ldotp} \middle\langle \begin{array}{@{}c@{}} #7 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #8 \end{array} \right\rangle \end{array}}}
+
+% Non-atomic triple with alternative layout
+% #1 |-
+% {#2} #3 {#4}
+\newcommand{\triplenaaux}[4]{\begin{array}{@{}l@{}} {\color{violet}#1} \vdash \\ \quad \triple{#2}{#3}{#4}\end{array}}
+
+% Vertical non-atomic triple
+%       {#2}
+% #1 |-  #3
+%       {#4}
+\newcommand{\vtriplena}[4]{{\color{violet} #1} \vdash \begin{array}{@{}c@{}} {\color{blue} \left\{ {#2} \right\} } \\ {#3} \\ {\color{blue} \left\{ {#4} \right\}} \end{array}}
+
+% Atomic triple with no quantifier or local
+% #1 |- <#2> #3 <#4>
+\newcommand{\atriplenlnq}[4]{ {\color{violet}#1} \vdash {\color{blue}\left\langle \begin{array}{@{}c@{}}#2\end{array}  \middle\rangle \ {\color{black}#3} \ \middle\langle \begin{array}{@{}c@{}}#4\end{array} \right\rangle}}
+
+% Atomic triple with no local
+% #1 |- (AA) #2 . <#3> #4 <#5>
+\newcommand{\atriplenl}[5]{ {\color{violet}#1} \vdash {\color{RoyalBlue}\aall #2 \ldotp} {\color{blue}\left\langle \begin{array}{@{}c@{}}#3\end{array} \middle\rangle \ {\color{black}#4} \ \middle\langle \begin{array}{@{}c@{}}#5\end{array} \right\rangle}}
+
+% Atomic triple with no quantifiers
+% #1 |- < #2 | #3 > #4 < #5 | #6 >
+\newcommand{\atriplenq}[6]{ {\color{violet}#1} \vdash {\color{blue}\left\langle \begin{array}{@{}c@{}} #2 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #3 \end{array} \middle\rangle \ {\color{black}#4} \ \middle\langle \begin{array}{@{}c@{}} #5 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #6 \end{array} \right\rangle}}
+
+% Vertical atomic triple
+% #1 |- (AA) #2 . <#3 | #4>
+%                     #5
+%                 <#6 | #7>
+\newcommand{\vatriple}[7]{\begin{array}{@{}l@{}c@{}} {\color{violet}#1} \vdash {\color{RoyalBlue}\aall #2 \ldotp} & {\color{blue}\left\langle \begin{array}{@{}c@{}} #3 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #4 \end{array} \right\rangle} \\ & #5 \\ & {\color{blue}\left\langle \begin{array}{@{}c@{}} #6 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #7 \end{array} \right\rangle} \end{array}}
+
+% Vertical atomic triple with exists
+% #1 |- (AA) #2 . <#3 | #4>
+%                     #5
+%       (EE) #6   <#7 | #8>
+\newcommand{\vatriplee}[8]{{\color{violet}#1} \vdash \begin{array}{@{}c@{}} {\color{RoyalBlue}\aall #2 \ldotp} {\color{blue}\left\langle \begin{array}{@{}c@{}} #3 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #4 \end{array} \right\rangle} \\ #5  \\ {\color{RoyalBlue}\aexists #6 \ldotp} {\color{blue}\left\langle \begin{array}{@{}c@{}} #7 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #8 \end{array} \right\rangle} \end{array}}
+
+% Vertical atomic triple with no local
+%                 < #3 >
+% #1 |- (AA) #2 .   #4
+%                 < #5 >
+\newcommand{\vatriplenl}[5]{\begin{array}{@{}l@{}c@{}} {\color{violet}#1} \vdash {\color{RoyalBlue}\aall #2 \ldotp} & {\color{blue}\left\langle \begin{array}{@{}c@{}}#3\end{array} \right\rangle} \\ & #4 \\ & {\color{blue}\left\langle \begin{array}{@{}c@{}}#5\end{array} \right\rangle} \end{array}}
+
+% tau triples
+
+% Atomic Hoare triple
+% [#1] #2 |-t (AA) #3 . < #4 | #5 > #6 < #7 | #8 >
+\newcommand{\tauatriple}[8][]{ #1 {\color{violet}#2} \vdash_\tau {\color{RoyalBlue} \aall #3 \ldotp} {\color{blue} \left\langle \begin{array}{@{}c@{}} #4 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #5 \end{array} \middle\rangle \ {\color{black}#6} \ \middle\langle \begin{array}{@{}c@{}} #7 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #8 \end{array} \right\rangle}}
+
+% Atomic Hoare triple with exists
+% [#1] #2 |-t (AA) #3 . < #4 | #5 > #6 (EE) #7. < #8 | #9 >
+\newcommand{\tauatriplee}[9][]{ #1 {\color{violet}#2} \vdash_\tau {\color{RoyalBlue} \aall #3 \ldotp} {\color{blue} \left\langle \begin{array}{@{}c@{}} #4 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #5 \end{array} \middle\rangle \ {\color{black}#6} \quad {\color{RoyalBlue}\aexists #7 \ldotp} \middle\langle \begin{array}{@{}c@{}} #8 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #9 \end{array} \right\rangle}}
+
+% Non-atomic Hoare triple
+% [#1] #2 |-t {#3} #4 {#5}
+\newcommand{\tautriplena}[5][]{#1 {\color{violet}#2} \vdash_\tau \triple{#3}{#4}{#5}}
+
+% Atomic triple with alternative layout
+% [#1] #2 |-t (AA) #3 .
+%   < #4 | #5 > #6 (EE) #7 . < #8 | #9 >
+\newcommand{\tauatripleeaux}[9][]{\begin{array}{@{}l@{}} #1 {\color{violet}#2} \vdash_\tau {\color{RoyalBlue} \aall #3 \ldotp} \\ \quad {\color{blue} \left\langle \begin{array}{@{}c@{}} #4 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #5 \end{array} \middle\rangle \ {\color{black}#6} \quad {\color{violet}\aexists #7 \ldotp} \middle\langle \begin{array}{@{}c@{}} #8 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #9 \end{array} \right\rangle \end{array}}}
+
+% Non-atomic triple with alternative layout
+% [#1] #2 |-t
+% {#3} #4 {#5}
+\newcommand{\tautriplenaaux}[5][]{\begin{array}{@{}l@{}} #1 {\color{violet}#2} \vdash_\tau \\ \quad \triple{#3}{#4}{#5}\end{array}}
+
+% Vertical non-atomic triple
+%       {#2}
+% #1 |-t #3
+%       {#4}
+\newcommand{\vtautriplena}[4]{{\color{violet} #1} \vdash_\tau \begin{array}{@{}c@{}} {\color{blue} \left\{ {#2} \right\} } \\ {#3} \\ {\color{blue} \left\{ {#4} \right\}} \end{array}}
+
+% Atomic triple with no quantifier or local
+% #1 |-t <#2> #3 <#4>
+\newcommand{\tauatriplenlnq}[4]{ {\color{violet}#1} \vdash_\tau {\color{blue}\left\langle \begin{array}{@{}c@{}}#2\end{array}  \middle\rangle \ {\color{black}#3} \ \middle\langle \begin{array}{@{}c@{}}#4\end{array} \right\rangle}}
+
+% Atomic triple with no local
+% [#1] #2 |-t (AA) #3 . <#4> #5 <#6>
+\newcommand{\tauatriplenl}[6][]{ #1 {\color{violet}#2} \vdash_\tau {\color{RoyalBlue}\aall #3 \ldotp} {\color{blue}\left\langle \begin{array}{@{}c@{}}#4\end{array} \middle\rangle \ {\color{black}#5} \ \middle\langle \begin{array}{@{}c@{}}#6\end{array} \right\rangle}}
+
+% Atomic triple with no local with alternative layout
+% [#1] #2 |-t
+% (AA) #3 . <#4> #5 <#6>
+\newcommand{\tauatriplenlaux}[6][]{\begin{array}{@{}l@{}} #1 {\color{violet}#2} \vdash_\tau \\ \quad {\color{RoyalBlue}\aall #3 \ldotp} {\color{blue}\left\langle \begin{array}{@{}c@{}}#4\end{array} \middle\rangle \ {\color{black}#5} \ \middle\langle \begin{array}{@{}c@{}}#6\end{array} \right\rangle}\end{array}}
+
+% Atomic triple with no quantifiers
+% #1 |-t < #2 | #3 > #4 < #5 | #6 >
+\newcommand{\tauatriplenq}[6]{ {\color{violet}#1} \vdash_\tau {\color{blue}\left\langle \begin{array}{@{}c@{}} #2 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #3 \end{array} \middle\rangle \ {\color{black}#4} \ \middle\langle \begin{array}{@{}c@{}} #5 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #6 \end{array} \right\rangle}}
+
+% Vertical atomic triple
+% #1 |-t (AA) #2 . <#3 | #4>
+%                      #5
+%                  <#6 | #7>
+\newcommand{\vtauatriple}[7]{\begin{array}{@{}l@{}c@{}} {\color{violet}#1} \vdash_\tau {\color{RoyalBlue}\aall #2 \ldotp} & {\color{blue}\left\langle \begin{array}{@{}c@{}} #3 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #4 \end{array} \right\rangle} \\ & #5 \\ & {\color{blue}\left\langle \begin{array}{@{}c@{}} #6 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #7 \end{array} \right\rangle} \end{array}}
+
+% Vertical atomic triple with exists
+% [#1] #2 |-t (AA) #3 . <#4 | #5>
+%                                     #6
+%                 (EE) #7   <#8 | #9>
+\newcommand{\vtauatriplee}[9][]{{#1 \color{violet}#2} \vdash_\tau \begin{array}{@{}c@{}} {\color{RoyalBlue}\aall #3 \ldotp} {\color{blue}\left\langle \begin{array}{@{}c@{}} #4 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #5 \end{array} \right\rangle} \\ #6  \\ {\color{RoyalBlue}\aexists #7 \ldotp} {\color{blue}\left\langle \begin{array}{@{}c@{}} #8 \end{array} \, \middle| \, \begin{array}{@{}c@{}} #9 \end{array} \right\rangle} \end{array}}
+
+% Vertical atomic triple with no local
+%                               < #4 >
+% [#1] #2 |-t (AA) #3 .  #5
+%                              < #6 >
+\newcommand{\vtauatriplenl}[6][]{\begin{array}{@{}l@{}c@{}} #1 {\color{violet}#2} \vdash_\tau {\color{RoyalBlue}\aall #3 \ldotp} & {\color{blue}\left\langle \begin{array}{@{}c@{}}#4\end{array} \right\rangle} \\ & #5 \\ & {\color{blue}\left\langle \begin{array}{@{}c@{}}#6\end{array} \right\rangle} \end{array}}
+
+
+
+\newcommand{\aspecline}[1]{{\color{blue}\left\langle\begin{array}{@{}l@{}} #1 \end{array}\right\rangle}}
+\newcommand{\aspeclinep}[2]{{\color{blue}\left\langle\begin{array}{@{}l@{}} #1 \end{array}\, \middle| \, \begin{array}{l} #2 \end{array}\right\rangle}}
+\newcommand{\specline}[1]{{\color{blue}\left\{\begin{array}{@{}l@{}} #1 \end{array}\right\}}}
+\newcommand{\acontextline}[1]{{\color{violet}#1}}
+\newcommand{\quantifierline}[1]{{\color{RoyalBlue}#1}}
+
+% An environment for annotating proof outlines
+\newenvironment{leftvruled}[2][10pt]{\begin{array}{@{}m{#1}|l@{}}\text{\rotatebox{90}{\ {#2}\ }}&\begin{array}{@{}l@{}}}{\end{array}\end{array}}
+
+\newcommand{\ite}[3]{\underline{\mathbf{if}} \ {#1} \ \underline{\mathbf{then}} \ {#2} \ \underline{\mathbf{else}} \ {#3}}
+\newcommand{\itel}[3]{\underline{\mathbf{if}} \ {#1} \ \underline{\mathbf{then}} \ {#2} \\ \quad \underline{\mathbf{else}} \ {#3}}
+\newcommand{\itell}[3]{\underline{\mathbf{if}} \ {#1} \\ \underline{\mathbf{then}} \ {#2} \\ \underline{\mathbf{else}} \ {#3}}
+
+% RGSep / CAP
+\newcommand{\shared}[1]{{\fboxsep=0.4pt\fbox{\ensuremath{\;\begin{array}{@{}r@{}}#1\end{array}\;}}\hspace{1pt}}}
+\newcommand{\Fshare}[3]{\shared{#1}^{#2}_{#3}}
+\newcommand{\shareds}[1]{{\fboxsep=1pt\fbox{\ensuremath{{\phantom{||}\!\!\!}#1\,}}\hspace{1pt}}}
+\newcommand{\Fshares}[3]{\shareds{#1}^{#2}_{#3}}
+
+% Length-of
+\newcommand{\lo}[1]{\left| {#1} \right|}
+

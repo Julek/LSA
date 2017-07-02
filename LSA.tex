@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+%\usepackage{amsthm}
+\usepackage{stmaryrd}
+\usepackage{proof}
+\usepackage{graphicx}
+\usepackage[sans]{dsfont}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{rotating}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning,decorations.markings}
+\usepackage{fixltx2e}
+\usepackage{xspace} % Ugh
+\usepackage{afterpage}
+\usepackage{subcaption}
+\usepackage{placeins}
+
+\input{macros}
+
+\title{LSA: Compositional and Modular Termination Verification of Fine-Grained Concurrent Programs with Separational Logic}
+\author{Julian Sutherland}
+\date{}
+
+\begin{document}
+
+\maketitle
+\newpage 
+
+\begin{section}{Thesis Table of Contents}
+
+  \begin{itemize}
+  \item Introduction
+  \item Background
+    \begin{itemize}
+    \item Separational Logic.
+      \begin{itemize}
+      \item Hoare Logic.
+      \item Separational Logic.
+      \item Concurrent Separational Logic.
+      \end{itemize}
+    \item Compositional Reasoning.
+      \begin{itemize}
+      \item Rely/Guarantee Reasoning.
+      \item Extending Rely/Guarantee Reasoning for Verifying Termination.
+      \item Applications
+      \end{itemize}
+    \item Abstract Reasoning and Modularity.
+      \begin{itemize}
+      \item ASL
+      \item CAP
+      \item Linearizability
+      \item TaDA
+      \end{itemize}
+    \item Liveness, Blocking and Non-Blocking Programs.
+    \end{itemize}
+  \item Modular and Compositional Verification of Non-Blocking Concurrent Programs.
+    \begin{itemize}
+    \item Rely/Guarantee Reasoning for Verifying the Termination of Non-Blocking Programs.
+    \item Total-TaDA
+    \end{itemize}
+  \item Modular and Compositional Verification of Blocking Concurrent Programs.
+  \item Future work.
+  \item Conclussions
+  \end{itemize}
+
+\newpage
+  
+\end{section}
+
+\begin{section}{Narrative}
+
+  \emph{Modularity} and \emph{Compositionality} are properties of program logics which can save a tremendous amount of work when verifying software, as well as making the argument clearer and more concise. \\
+
+  Modular program logics seperate the verification of software modules from the verification of clients to these modules through a \emph{Modular abstraction}. A modular abstraction allows the behaviour of modules to be specified at an abstract level. These can then be used to construct abstract module specifications. A client to the module can then be verified with respect to the abstract specification of the module without any specific knowledge of the implementation of the module and an implementation of the module can be show to satisfy the specification. Clients can in turn also be modules. Clients and module implementations verified with respect to the same abstract module specification then are automatically verified to work together. Modular abstractions need to strike a balance between being specific enough about the semantics of operations for clients to be able to have sufficient knowledge to verify their own semantics with respect to these specification and not being so specific as to constrain potential implementations. \\
+
+  Compositional program logics allow proofs to be used in a variety of different contexts to construct new ones. For concurrent program logics, an essention component of this is \emph{thread-local reasoning}. That is, the ability to reason about the behaviour of a thread when executed with its environment without explicit knowledge of the environment's implementation. So, to be able to reason in a thread local manner, a concurrent program logic needs to model the environment of the threads it is reasoning about. This model of the environment needs to strike a similar balance to that of modular abstractions. It needs to be sufficiently expressive to allow the current thread to infer the information it needs to verify its own semantics, while constraining implementations of the environment as little as possible so the original proof can be composed with as many environments as is possible. \\
+
+
+  In recent years, a lot of work has been done towards developing \emph{partial} modular and compositional separational logics that can verify \emph{fine-grained} concurrent programs. A partial program logic is one that does not guarantee termination and a fine grained concurrent program is one that uses only fine grained, low-level operations, such as read, write and Compare-and-swap operations on a single heap cell. \\
+
+  Separational logic, introduced by O'Hearn, Reynolds and Yang in \cite{SL}, was initially a logic for reasoning about heap based programs. Assertions of the form $E_1 \mapsto E_2$ indicating the ownership of a cell on the heap at address $E_1$ with content $E_2$ and assertions of the form $P * Q$ indicating the ownership of a two disjoint subheaps (disjoint in terms of memory footprint) satisfying $P$ and $Q$ respectively. However, this was later generalized by Calgano, O'Hearn and Yang in \cite{ASL} to arbitrary \emph{separational algebra} which allow abstract notions of ownership and seperation to be expressed. These can be leveraged to great effect to abstractly express the complicated permissions and ownership transfer protocols that many modules have.\\
+
+  Jones introduced Rely/Guarantee style reasoning for compositional reasoning about concurrent programs in \cite{RGReasoning}. The idea of Rely/Guarantee style reasoning is to model the interaction between a thread and its environment using to binary relations over states, the ``rely'' relation describes the state transitions the environment is allowed to effect and the ``guarantee'' relation describes those the current thread can effect.  These ideas were adapted to separational logic by Vafeiadis and Parkinson in their paper "A Marriage of Rely/Guarantee and Separation Logic" (\cite{RGSEP}). \\
+
+  The ideas behind Abstract separation logic were leveraged to form a modular abstraction in the Concurrent Abstract Predicate (CAP) logic introduced by Dinsdale-Young et al. in \cite{CAP}. CAP uses a form of ghost state called ``permission assertions'' to link ASL style abstract module specifications with fine-grained implementations of the module.\\
+  
+  A correctness condition for the operations of concurrent software modules, known as \emph{linearizability}, was introduced by Herlihy in \cite{Linearizability}. Intuitively, linearizability, requires that each operation apear to take effect at a single moment in time between the operation being called and it returning, known as the \emph{linearization point}. Requiring the operation of a module to satisfy this correctness condition allows the operations to be specified by the change between the abstract state of the module before and after the linearization point. Separational logics by adapting CAP in \cite{TaDA} with the addition of \emph{atomic triples} the allow operations to be specified in a slight generalization of the method described above. \\
+
+  However, these methodologies have had limited adaptation to a total setting, where specifications guarantee the termination of a piece of code under the specified conditions. The primary goal of the narrative of my thesis will be to extend the program logic TaDA to verify the termination of programs in a modular and compositional manner. In the body of the thesis, I will introduce Total-TaDA (\cite{Total-TaDA}), an extension of TaDA I developed along with my coauthors \\
+
+  To do this, I will first introduce Separational logic, Rely/Guarantee reasoning and linearizability and the concurrent separational logics that uses these ideas to extend their compositionality and modularity in the background section of my thesis. \\
+
+  Next, I will also introduce existing work on extending the concepts used by TaDA to be modular and compositional. \\
+
+  A naive extension of Rely/Guarantee reasoning to a total context, where the Rely and Guarantees are encoded as sets of assertions that guarantees that if a certain condition is met, for example a lock is locked, then, eventually, another condition will be fulfilled, such as the lock being unlocked, will allow circular reasoning, which is unsound\textsuperscript{\cite{McMillan}}. These expressions represent \emph{liveness properties}, that guarantee that progress of a certain form will eventually occur. \\
+
+  An example of this can be seen in figure \ref{NaiveTotalRGCircular}. The code depicted in the figure spawns two threads in parallel, which both try and lock two locks, $\pvar{x}$ and $\pvar{y}$, but in different orders respectively and then both unlock both locks in the opposite order to that in which they locked them. If each thread completes the first lock operation before the other's second lock operation takes effect, then the left hand thread ends up holding the lock $\pvar{x}$ and trying to acquire the lock $\pvar{y}$ and the right hand thread is in the reverse situation, resulting in a deadlock, so this code can fail to terminate.\\
+
+  \begin{figure}
+    \[
+    \begin{array}{c}
+      \pfuncall{\pvar{x}}{\mathtt{makeLock}}{}; \\
+      \pfuncall{\pvar{y}}{\mathtt{makeLock}}{}; \\
+      \begin{array}{c || c}
+        \mathtt{lock}(\pvar{x}); & \mathtt{lock}(\pvar{y}); \\
+        \mathtt{lock}(\pvar{y}); & \mathtt{lock}(\pvar{x}); \\
+        \mathtt{unlock}(\pvar{y}); & \mathtt{unlock}(\pvar{x}); \\
+        \mathtt{unlock}(\pvar{x}); & \mathtt{unlock}(\pvar{y});
+      \end{array}
+    \end{array}
+    \]
+    \caption{Circular reasoning}
+    \label{NaiveTotalRGCircular}
+  \end{figure}
+
+  When checking whether the $\mathtt{lock}(\pvar{y})$ operation in the left hand terminates, either the lock $\pvar{y}$ is unlocked and the operation terminates, or it is locked, and from the rely set of assertions, it can be assumed that eventually the lock $\pvar{y}$ will be unlocked. However, this occurs because of the 4\textsuperscript{th} line of code on the right hand thread, $\mathtt{unlock}(\pvar{y})$, is eventually executed. This only occurs if the 2\textsuperscript{nd} line of code in the right hand thread, $\mathtt{lock}(\pvar{x})$, terminates, which, because the left hand thread is executing its second line of code, must be held by the left hand thread. However, using the same reasoning, that the left hand thread must eventually unlock the lock $\pvar{x}$, the right hand thread can assume this will eventually terminate. However, this is because of the $\mathtt{unlock}(\pvar{x})$ operation in the left hand thread eventually executes, which in turn requires the operation $\mathtt{lock}(\pvar{y})$ to terminate. So this reasoning indirectly assumes the $\mathtt{lock}(\pvar{y})$ operation terminates to prove that this operation terminates, which is circular. \\
+
+  McMillan explores this issue and suggests an extension of Rely/Guarantee reasoning that can be used to reason soundly about liveness properties in \cite{McMillan}. Intuitively, his methodology reasons over a directed graph, where the vertices are associated with liveness properties to be proven and if a vertex, $x$, is reachable from another vertex, $y$, then the verification of the lieveness property associated with the vertex $y$ can rely on the liveness property associated with the vertex $x$. Clearly, this graph, can contain cycles, however, McMillan's method requires that every cycle contain at least one \emph{unit delay edge}.\\
+
+  Then, to prove that all of the liveness properties associated with the edges hold, an induction over time variable, $t$, is performed. When verifying a node, $x$, at time $t$, i.e. checking that at time $t$ the liveness property associated with the node holds, one can assume that the liveness properties associated with nodes reacheable from the node $x$ through a path not involving a unit delay edge hold up to time $t$ and that other nodes, reachable through a path including a unit delay edge hold up to time $t - 1$. Since every cycle must contain at least one unit delay edge, this prevents circular reasoning. \\
+
+  Jakobs introduces compositional seperational logics for verifying deadlock-freedom and termination of coarse-grained (with built in locks and asynchronous channels) in \cite{} and \cite{} which effectively uses this methodology to prevent circular reasoning in its reasoning. \\
+
+  Continuing on from this, I will introduce the notion of linearizability (\cite{Linearizability}) as well as the program logic TaDA on which I will base the total logics I am developing, as well as the generalization of linearizability that TaDA uses to produce a modular abstraction. 
+  
+\end{section}
+
+\bibliographystyle{plain}
+\bibliography{bibliography} 
+
+\end{document}

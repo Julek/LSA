@@ -1,0 +1,114 @@
+@inproceedings{SL,
+ author = {O'Hearn, Peter W. and Reynolds, John C. and Yang, Hongseok},
+ title = {Local Reasoning About Programs That Alter Data Structures},
+ booktitle = {Proceedings of the 15th International Workshop on Computer Science Logic},
+ series = {CSL '01},
+ year = {2001},
+ isbn = {3-540-42554-3},
+ pages = {1--19},
+ numpages = {19},
+ url = {http://dl.acm.org/citation.cfm?id=647851.737404},
+ acmid = {737404},
+ publisher = {Springer-Verlag},
+ address = {London, UK, UK},
+} 
+
+@inproceedings{RGReasoning,
+  author = {Jones, C. B.},
+  title = {Specification and Design of (Parallel) Programs},
+  booktitle = {Proceedings of IFIP'83},
+  year = {1983},
+  pages = {321--332},
+  publisher = {North-Holland}
+}
+
+@TechReport{RGSEP,
+  author =	 {Vafeiadis, Viktor and Parkinson, Matthew},
+  title = 	 {{A marriage of rely/guarantee and separation logic}},
+  year = 	 2007,
+  month = 	 jun,
+  url = 	 {http://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-687.pdf},
+  institution =  {University of Cambridge, Computer Laboratory},
+  number = 	 {UCAM-CL-TR-687}
+}
+
+@inproceedings{ASL,
+ author = {Calcagno, Cristiano and O'Hearn, Peter W. and Yang, Hongseok},
+ title = {Local Action and Abstract Separation Logic},
+ booktitle = {Proceedings of the 22Nd Annual IEEE Symposium on Logic in Computer Science},
+ series = {LICS '07},
+ year = {2007},
+ isbn = {0-7695-2908-9},
+ pages = {366--378},
+ numpages = {13},
+ url = {http://dx.doi.org/10.1109/LICS.2007.30},
+ doi = {10.1109/LICS.2007.30},
+ acmid = {1271718},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+} 
+
+@inproceedings{CAP,
+  author = {Dinsdale{-}Young, Thomas and Dodds, Mike and Gardner, Philippa and Parkinson, Matthew J. and Vafeiadis, Viktor},
+  title = {{Concurrent Abstract Predicates}},
+  booktitle = {Proceedings of the 24\textsuperscript{th} European Conference on Object-Oriented Programming ({ECOOP'10})},
+  year = {2010},
+  pages = {504--528},
+  abstract = {Abstraction is key to understanding and reasoning about large computer systems. Abstraction is simple to achieve if the relevant data structures are disjoint, but rather difficult when they are partially shared, as is often the case for concurrent modules. We present a program logic for reasoning abstractly about data structures that provides a fiction of disjointness and permits compositional reasoning. The internal details of a module are completely hidden from the client by concurrent abstract predicates. We reason about a module's implementation using separation logic with permissions, and provide abstract specifications for use by client programs using concurrent abstract predicates. We illustrate our abstract reasoning by building two implementations of a lock module on top of hardware instructions, and two implementations of a concurrent set module on top of the lock module.}
+}
+
+@article{Linearizability,
+ author = {Herlihy, Maurice P. and Wing, Jeannette M.},
+ title = {Linearizability: A Correctness Condition for Concurrent Objects},
+ journal = {ACM Trans. Program. Lang. Syst.},
+ issue_date = {July 1990},
+ volume = {12},
+ number = {3},
+ month = jul,
+ year = {1990},
+ issn = {0164-0925},
+ pages = {463--492},
+ numpages = {30},
+ url = {http://doi.acm.org/10.1145/78969.78972},
+ doi = {10.1145/78969.78972},
+ acmid = {78972},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+@inproceedings{TaDA,
+  author = {{da Rocha Pinto}, Pedro and Dinsdale{-}Young, Thomas and Gardner, Philippa},
+  title = {{TaDA: A Logic for Time and Data Abstraction}},
+  booktitle = {Proceedings of the 28\textsuperscript{th} European Conference on Object-Oriented Programming ({ECOOP'14})},
+  year = {2014},
+  pages = {207--231},
+  month = jul,
+  abstract = {To avoid data races, concurrent operations should either be at distinct times or on distinct data. Atomicity is the abstraction that an operation takes effect at a single, discrete instant in time, with linearisability being a well-known correctness condition which asserts that concurrent operations appear to behave atomically. Disjointness is the abstraction that operations act on distinct data resource, with concurrent separation logics enabling reasoning about threads that appear to operate independently on disjoint resources.
+  Building on separation logic with concurrent abstract predicates (CAP), we introduce TaDA, a program logic which combines the benefits of abstract atomicity and abstract disjointness. We give several examples: an atomic lock module, a CAP example with a twist, which cannot be done using linearisability; an atomic MCAS module implemented using our lock module, a classic linearisability example which cannot be done using CAP; and a double-ended queue module implemented using MCAS.},
+  doi = {10.1007/978-3-662-44202-9_9}
+}
+
+@Inbook{McMillan,
+author="McMillan, K. L.",
+editor="Pierre, Laurence
+and Kropf, Thomas",
+title="Circular Compositional Reasoning about Liveness",
+bookTitle="Correct Hardware Design and Verification Methods: 10th IFIP WG10.5 Advanced Research Working Conference, CHARME'99 BadHerrenalb,Germany,September 27--29, 1999 Proceedings",
+year="1999",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="342--346",
+abstract="Compositional proofs about systems of many components often involve apparently circular arguments. That is, correctness of component A must be assumed when verifying component B, and vice versa. The apparent circularity of such arguments can be resolved by induction over time. However, previous methods for such circular compositional proofs apply only to safety properties. This paper presents a method of circular compositional reasoning that applies to liveness properties as well. It is based on a new circular compositional rule implemented in the SMV proof assistant. The method is illustrated using Tomasulo's algorithm for out-of-order instruction execution. An implementation is proved live for arbitrary resources using compositional model checking.",
+isbn="978-3-540-48153-9",
+doi="10.1007/3-540-48153-2_30",
+url="http://dx.doi.org/10.1007/3-540-48153-2_30"
+}
+
+@inproceedings{Total-TaDA,
+author = {da, Rocha Pinto P and Dinsdale-Young, T and Gardner, P and Sutherland, J},
+doi = {10.1007/978-3-662-49498-1_8},
+pages = {176--201},
+title = {Modular termination verification for non-blocking concurrency},
+url = {http://dx.doi.org/10.1007/978-3-662-49498-1_8},
+year = {2016}
+}
