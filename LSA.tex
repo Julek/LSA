@@ -63,7 +63,7 @@
     \end{itemize}
   \item Modular and Compositional Verification of Blocking Concurrent Programs.
   \item Future work.
-  \item Conclussions
+  \item Conclusions
   \end{itemize}
 
 \newpage
@@ -89,13 +89,13 @@
   
   A correctness condition for the operations of concurrent software modules, known as \emph{linearizability}, was introduced by Herlihy in \cite{Linearizability}. Intuitively, linearizability, requires that each operation apear to take effect at a single moment in time between the operation being called and it returning, known as the \emph{linearization point}. Requiring the operation of a module to satisfy this correctness condition allows the operations to be specified by the change between the abstract state of the module before and after the linearization point. Separational logics by adapting CAP in \cite{TaDA} with the addition of \emph{atomic triples} the allow operations to be specified in a slight generalization of the method described above. \\
 
-  However, these methodologies have had limited adaptation to a total setting, where specifications guarantee the termination of a piece of code under the specified conditions. The primary goal of the narrative of my thesis will be to extend the program logic TaDA to verify the termination of programs in a modular and compositional manner. In the body of the thesis, I will introduce Total-TaDA (\cite{Total-TaDA}), an extension of TaDA I developed along with my coauthors \\
+  However, these methodologies have had limited adaptation to a \emph{total} setting, where specifications guarantee the termination of a program under the specified conditions on the concurrent environment in which it executes. The primary goal of my thesis will be to extend the program logic TaDA to verify the termination of programs in a modular and compositional manner. In the body of the thesis, I will introduce Total-TaDA (\cite{Total-TaDA}), an extension of TaDA I developed along with my coauthors that can verify the termination of \emph{non-blocking} concurrent programs in a modular and compositional manner as well my further attempts to generalize this to the blocking case. \\
 
-  To do this, I will first introduce Separational logic, Rely/Guarantee reasoning and linearizability and the concurrent separational logics that uses these ideas to extend their compositionality and modularity in the background section of my thesis. \\
+  A program is non-blocking if, individual threads within it cannot depend on other threads progressing to allow it to progress. Restricting the set of programs considered to only non-blocking programs enables a lot of the methodologies described above to achieve modular and compositional reasoning to be lifted with considerably more ease than in the blocking case. \\
 
-  Next, I will also introduce existing work on extending the concepts used by TaDA to be modular and compositional. \\
+  First however, I will introduce the necessary background on partial logics: Separational logic, Rely/Guarantee reasoning, linearizability and the partial concurrent separational logics that uses these ideas to extend their compositionality and modularity. \\
 
-  A naive extension of Rely/Guarantee reasoning to a total context, where the Rely and Guarantees are encoded as sets of assertions that guarantees that if a certain condition is met, for example a lock is locked, then, eventually, another condition will be fulfilled, such as the lock being unlocked, will allow circular reasoning, which is unsound\textsuperscript{\cite{McMillan}}. These expressions represent \emph{liveness properties}, that guarantee that progress of a certain form will eventually occur. \\
+  Next, I will introduce existing work on extending these ideas to the total case. A naive extension of Rely/Guarantee reasoning to a total context, where the Rely and Guarantees are encoded as sets of assertions that guarantees that if a certain condition is met, for example a lock is locked, then, eventually, another condition will be fulfilled, such as the lock being unlocked, will allow circular reasoning, which is unsound\textsuperscript{\cite{McMillan}}. These expressions represent \emph{liveness properties}, that guarantee that progress of a certain form will eventually occur. \\
 
   An example of this can be seen in figure \ref{NaiveTotalRGCircular}. The code depicted in the figure spawns two threads in parallel, which both try and lock two locks, $\pvar{x}$ and $\pvar{y}$, but in different orders respectively and then both unlock both locks in the opposite order to that in which they locked them. If each thread completes the first lock operation before the other's second lock operation takes effect, then the left hand thread ends up holding the lock $\pvar{x}$ and trying to acquire the lock $\pvar{y}$ and the right hand thread is in the reverse situation, resulting in a deadlock, so this code can fail to terminate.\\
 
